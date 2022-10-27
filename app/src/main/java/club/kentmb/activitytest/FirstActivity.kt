@@ -14,7 +14,7 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import club.kentmb.activitytest.databinding.FirstLayoutBinding
 
-class FirstActivity : AppCompatActivity() {
+class FirstActivity : BaseActivity() {
     private lateinit var binding: FirstLayoutBinding//视图绑定第一步，定义一个binding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,6 +23,8 @@ class FirstActivity : AppCompatActivity() {
         val view = binding.root//视图绑定第三步
         setContentView(view)//视图绑定第四部
         binding.button1.setOnClickListener(this::clickHandlerFunction)//注册一个监听单击
+
+        Log.d("FirstActivity","Task id is $taskId")
     }
 
     private fun clickHandlerFunction(view: View){
@@ -45,8 +47,7 @@ class FirstActivity : AppCompatActivity() {
 /*        val intent = Intent(this,SecondActivity::class.java)
         startActivityForResult(intent,1)*///此方法已被弃用，使用Activity Result API替代
 
-        val intent = Intent(this,SecondActivity::class.java)
-        requestDataLauncher.launch(intent)
+        SecondActivity.actionStart(this,"data1","data2")
     }
 
     private val requestDataLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
